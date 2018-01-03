@@ -110,7 +110,13 @@ def main(arguments):
         return None
 
     session.end()
-    os.chdir(bot_path)
+
+    try:
+        os.chdir(bot_path)
+    except:
+        pass
+    else:
+        logger.info('positioned in bot dir')
 
     return None
 
