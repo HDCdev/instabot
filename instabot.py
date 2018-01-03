@@ -9,6 +9,7 @@ Arguments:
   CNF                        config file [default: config.yml]
 
 Options:
+  --follow=<username>        follow someone else's followers/following
   --log=<level>              log level [default: DEBUG]
   --version                  show program's version number and exit
   -h, --help                 show this help message and exit
@@ -86,11 +87,25 @@ def get_session():
     return session
 
 
+def follower():
+
+    follow_set = config_file['follow']['set']
+    logger.debug('follow sets: %s', str(follow_set))
+
+    session.set_do_follow({**follow_set})
+
+    return None
+
+
 def main(arguments):
+    print(arguments)
     config = arguments['CNF'] if arguments['CNF'] is not None else CONFIG
+    follow = arguments['--follow']
     log_level = arguments['--log']
 
     set_logger(log_level)
+
+    global config_file
 
     try:
         config_file = get_config(config)
@@ -100,6 +115,8 @@ def main(arguments):
 
     cd_insta_path()
 
+    global session
+
     try:
         session = get_session()
     except KeyError as error:
@@ -108,6 +125,9 @@ def main(arguments):
     except Exception as error:
         logger.critical('unable to login: %s', error)
         return None
+
+    if follow is not None:
+        follower()
 
     session.end()
 
