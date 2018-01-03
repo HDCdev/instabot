@@ -46,7 +46,7 @@
         "instagram-py": {
             "editable": true,
             "git": "https://github.com/HDCdev/InstaPy.git",
-            "ref": "0c1fa19b9804ab17e63fb1b4b18f82c6bf76965f"
+            "ref": "192c2d06b1e6c625a6df235d9d9c4fe703f0053f"
         },
         "instapy": {
             "editable": true,
