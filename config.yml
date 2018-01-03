@@ -16,14 +16,24 @@ follow:
   interact:
     - natgeo
 
-users:
+like:
+  enabled: True
+  percentage: 70
+  tags:
+    - tag1
+  locations:
+    - 215101523
+  dont:
+    - '#exactmatch'
+    - '[startswith'
+    - ']endswith'
+    - 'broadmatch'
   ignored:
     - random_user
+  ignore_if_contains:
+    - random
+
+users:
   dont_include:
     - friend1
 
-exclude:
-  - '#exactmatch'
-  - '[startswith'
-  - ']endswith'
-  - 'broadmatch'
