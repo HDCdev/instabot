@@ -10,9 +10,10 @@ comments:
     - Amazing flow
 
 follow:
-  enabled: True
-  percentage: 10
-  times: 2
+  set:
+    enabled: True
+    percentage: 10
+    times: 2
   interact:
     - natgeo
 
