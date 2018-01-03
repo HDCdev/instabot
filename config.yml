@@ -19,6 +19,8 @@ follow:
 users:
   ignored:
     - random_user
+  dont_include:
+    - friend1
 
 exclude:
   - '#exactmatch'
