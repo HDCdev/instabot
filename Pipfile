@@ -1,0 +1,19 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+pillow = "*"
+pyvirtualdisplay = "*"
+emoji = "*"
+selenium = "*"
+clarifai = {git = "https://github.com/HDCdev/clarifai-python.git"}
+instapy = {git = "https://github.com/HDCdev/InstaPy.git", editable = true}
+
+
+[dev-packages]
+
