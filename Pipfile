@@ -13,6 +13,8 @@ emoji = "*"
 selenium = "*"
 clarifai = {git = "https://github.com/HDCdev/clarifai-python.git"}
 instapy = {git = "https://github.com/HDCdev/InstaPy.git", editable = true}
+pyyaml = "*"
+docopt = "*"
 
 
 [dev-packages]
