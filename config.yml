@@ -1,4 +1,21 @@
 comments:
-  - Impresionante!
-  - Enhorabuena gran trabajo
-  - Awesome!
+  enabled: True
+  percentage: 25
+  Photo:
+    - Impresionante!
+    - Enhorabuena gran trabajo
+    - Awesome!
+  Video:
+    - Great take
+    - Amazing flow
+
+follow:
+  enabled: True
+  percentage: 10
+  times: 2
+  interact:
+    - natgeo
+
+users:
+  ignored:
+    - random_user
