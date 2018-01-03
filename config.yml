@@ -19,3 +19,9 @@ follow:
 users:
   ignored:
     - random_user
+
+exclude:
+  - '#exactmatch'
+  - '[startswith'
+  - ']endswith'
+  - 'broadmatch'
