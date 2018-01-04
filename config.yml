@@ -21,8 +21,11 @@ follow:
     - natgeo
 
 like:
-  enabled: True
-  percentage: 70
+  set:
+    enabled: True
+    percentage: 70
+  kwargs:
+    amount: 10
   tags:
     - tag1
   locations:
