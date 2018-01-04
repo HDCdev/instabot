@@ -10,6 +10,8 @@ Arguments:
 
 Options:
   --follow=<username>        follow someone else's followers/following
+  --like=<option>            like posts by [tags|feed]
+  --tags=<tags>              tags to track
   --log=<level>              log level [default: DEBUG]
   --version                  show program's version number and exit
   -h, --help                 show this help message and exit
@@ -100,9 +102,33 @@ def follower(target):
     return None
 
 
+def liker(mode, params_tags=None):
+
+    like_set = config_file['like']['set']
+    logger.debug('like sets: %s', str(like_set))
+    session.set_do_like(**like_set)
+
+    like_kwargs = config_file['like']['kwargs']
+    logger.debug('like kwargs: %s', str(like_kwargs))
+
+    if mode == 'tags':
+        tags = config_file['like']['tags']
+
+        if params_tags:
+            tags += params_tags
+
+        session.like_by_tags(tags, **like_kwargs)
+    else:
+        session.like_by_feed(**like_kwargs)
+
+    return None
+
+
 def main(arguments):
     config = arguments['CNF'] if arguments['CNF'] is not None else CONFIG
     follow = arguments['--follow']
+    like = arguments['--like']
+    tags = arguments['--tags']
     log_level = arguments['--log']
 
     set_logger(log_level)
@@ -131,6 +157,15 @@ def main(arguments):
     if follow is not None:
         target = follow.split(',')
         follower(target)
+
+    if like is not None:
+        like = like.lower()
+        if like  in ['tags', 'feed']:
+            if tags is not None:
+                tags = tags.split(',')
+            liker(like, params_tags=tags)
+        else:
+            logger.critical('%s not a valid like option', like)
 
     session.end()
 
