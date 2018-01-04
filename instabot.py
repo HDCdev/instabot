@@ -87,18 +87,20 @@ def get_session():
     return session
 
 
-def follower():
+def follower(target):
 
     follow_set = config_file['follow']['set']
     logger.debug('follow sets: %s', str(follow_set))
+    session.set_do_follow(**follow_set)
 
-    session.set_do_follow({**follow_set})
+    follow_kwargs = config_file['follow']['kwargs']
+    logger.debug('follow kwargs: %s', str(follow_kwargs))
+    session.follow_user_followers(target, **follow_kwargs)
 
     return None
 
 
 def main(arguments):
-    print(arguments)
     config = arguments['CNF'] if arguments['CNF'] is not None else CONFIG
     follow = arguments['--follow']
     log_level = arguments['--log']
@@ -127,7 +129,8 @@ def main(arguments):
         return None
 
     if follow is not None:
-        follower()
+        target = follow.split(',')
+        follower(target)
 
     session.end()
 
